@@ -13,7 +13,7 @@
     </div>
   <button type="button" class="btn-close"style="margin-left:8%;" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
-@elseif(Session::get('errorEd'))
+@elseif(Session::get('echoEd'))
 <div class="alert alert-success d-flex align-items-center" role="alert" style="margin-top:10px; width:40%;">
     <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
     <div>
@@ -22,13 +22,13 @@
   <button type="button" class="btn-close"style="margin-left:8%;" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
 @elseif(Session::get('errorC'))   
-<div class="alert alert-success d-flex align-items-center" role="alert" style="margin-top:10px; width:40%;">
-    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+<div class="alert alert-danger d-flex align-items-center" role="alert" style="margin-top:10px; width:40%;">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
     <div>
-        <strong>Logrado!: </strong>{{Session::get('echoC')}}
+      <strong>Error: </strong>{{Session::get('errorC')}}
     </div>
-  <button type="button" class="btn-close"style="margin-left:8%;" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div> 
+  <button type="button" class="btn-close" style="margin-left:8%;"    data-bs-dismiss="alert" aria-label="Close"></button>
+</div> 
 @elseif(Session::get('errorE'))
 <div class="alert alert-danger d-flex align-items-center" role="alert" style="margin-top:10px; width:40%;">
     <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
@@ -37,6 +37,14 @@
     </div>
   <button type="button" class="btn-close" style="margin-left:8%;"    data-bs-dismiss="alert" aria-label="Close"></button>
 </div>   
+@elseif(Session::get('errorEd'))
+<div class="alert alert-danger d-flex align-items-center" role="alert" style="margin-top:10px; width:40%;">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Danger:"><use xlink:href="#exclamation-triangle-fill"/></svg>
+    <div>
+      <strong>Error: </strong>{{Session::get('errorEd')}}
+    </div>
+  <button type="button" class="btn-close" style="margin-left:8%;"    data-bs-dismiss="alert" aria-label="Close"></button>
+</div> 
 @endif
 
         <a href="/Cita/Crear">

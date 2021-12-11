@@ -47,6 +47,7 @@ class CitaController extends Controller
     }
     public function guardar(Request $request){
         $input=$request->all();
+        $servi= Servicio::all();
         $request->validate([
         'nombre_Cliente'=>'required|min:3|max:100|string',
         'servicio_id'=>'required|exists:servicios,id',
@@ -56,22 +57,33 @@ class CitaController extends Controller
         'precio'=>'required|min:0|max:100000',
         'estado'=>'in:1,0',
         ]);
-        try{
-            Cita::create([
-                "nombre_Cliente"=>$input["nombre_Cliente"],
-                "servicio_id"=>$input["servicio_id"],
-                "fecha"=>$input["fecha"],
-                "direccion"=>$input["direccion"],
-                "descripcion"=>$input["descripcion"],
-                "precio"=>$input["precio"],
-                "estado"=>$input=1,
-            ]);
-            session()->flash('echoC','La cita fue Agregada');
-            return redirect("/Cita");
-        }catch(\Exception $e){
-            Flash::error($e->getMessage());
-            return redirect("/Cita/Crear");
+        foreach ($servi as $value) {
+            if ($input["servicio_id"]==$value->id) {
+                if ($value->id==1) {
+                            
+                    try{
+                        Cita::create([
+                            "nombre_Cliente"=>$input["nombre_Cliente"],
+                            "servicio_id"=>$input["servicio_id"],
+                            "fecha"=>$input["fecha"],
+                            "direccion"=>$input["direccion"],
+                            "descripcion"=>$input["descripcion"],
+                            "precio"=>$input["precio"],
+                            "estado"=>$input=1,
+                        ]);
+                        session()->flash('echoC','La cita fue Agregada');
+                        return redirect("/Cita");
+                    }catch(\Exception $e){
+                        Flash::error($e->getMessage());
+                        return redirect("/Cita/Crear");
+                    }
+                }else{
+                    session()->flash('errorC','La cita  no fue Agregada');
+                        return redirect("Cita");
+                }
+            }
         }
+
 
     }
     public function editar($id){
@@ -94,6 +106,7 @@ class CitaController extends Controller
     }
     public function update(Request $request){
         $input=$request->all();
+        $servi= Servicio::all();
         $request->validate([ 
         'nombre_Cliente'=>'required|min:3|max:100|string',
         'servicio_id'=>'required|exists:servicios,id',
@@ -103,30 +116,38 @@ class CitaController extends Controller
         'precio'=>'required|min:0|max:100000',
         'estado'=>'in:1,0',
         ]);
-        try{
-            $cita=Cita::find($input["id"]);
+        foreach ($servi as $value) {
+            if ($input["servicio_id"]==$value->id) {
+                if ($value->id==1) {
+                    try{
+                        $cita=Cita::find($input["id"]);
 
-            if ($cita==null) {
-                session()->flash('errorE','Cita no encontrada');
-                return redirect("/Cita");
+                        if ($cita==null) {
+                            session()->flash('errorE','Cita no encontrada');
+                            return redirect("/Cita");
+                        }
+
+                        $cita->update([
+                            "nombre_Cliente"=>$input["nombre_Cliente"],
+                            "servicio_id"=>$input["servicio_id"],
+                            "fecha"=>$input["fecha"],
+                            "direccion"=>$input["direccion"],
+                            "descripcion"=>$input["descripcion"],
+                            "precio"=>$input["precio"],
+                            
+                        ]);
+                        session()->flash('echoEdC','La cita fue Editada');
+                        return redirect("Cita");
+                    }catch(\Exception$e){
+                        Flash::error($e->getMessage());
+                        return redirect("/Cita/Crear");
+                    }
+                }else{
+                    session()->flash('errorEd','La cita  no fue Editada');
+                        return redirect("Cita");
+                }
             }
-
-            $cita->update([
-                "nombre_Cliente"=>$input["nombre_Cliente"],
-                "servicio_id"=>$input["servicio_id"],
-                "fecha"=>$input["fecha"],
-                "direccion"=>$input["direccion"],
-                "descripcion"=>$input["descripcion"],
-                "precio"=>$input["precio"],
-                
-            ]);
-            session()->flash('echoEd','La cita fue Editada');
-            return redirect("Cita");
-        }catch(\Exception$e){
-            Flash::error($e->getMessage());
-            return redirect("/Cita/Crear");
         }
-
     }
     public function updateEstado($id,$estado){
        
