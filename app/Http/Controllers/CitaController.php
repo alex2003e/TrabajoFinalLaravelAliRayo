@@ -59,7 +59,7 @@ class CitaController extends Controller
         ]);
         foreach ($servi as $value) {
             if ($input["servicio_id"]==$value->id) {
-                if ($value->id==1) {
+                if ($value->estado==1) {
                             
                     try{
                         Cita::create([
@@ -118,7 +118,7 @@ class CitaController extends Controller
         ]);
         foreach ($servi as $value) {
             if ($input["servicio_id"]==$value->id) {
-                if ($value->id==1) {
+                if ($value->estado==1) {
                     try{
                         $cita=Cita::find($input["id"]);
 
@@ -136,7 +136,7 @@ class CitaController extends Controller
                             "precio"=>$input["precio"],
                             
                         ]);
-                        session()->flash('echoEdC','La cita fue Editada');
+                        session()->flash('echoEd','La cita fue Editada');
                         return redirect("Cita");
                     }catch(\Exception$e){
                         Flash::error($e->getMessage());

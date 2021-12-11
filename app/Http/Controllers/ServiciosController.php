@@ -48,7 +48,7 @@ class ServiciosController extends Controller
         $servis=Servicio::all();
         $request->validate([        
         'nombre_Servicio'=>'required|unique:servicios,nombre_Servicio|min:3|string',
-        'descripcion'=>'string|min:5',
+        'descripcion'=>'nullable|string|min:5',
         'precio'=>'required|min:0|max:100',
         ]);
       
@@ -86,9 +86,43 @@ class ServiciosController extends Controller
         }
         return view("Servicios.detalleServicio",compact("servicios"));
     }
-    public function update(Request $request){
+    public function update(Request $request,$id){
         $input=$request->all();
         $servis=Servicio::all();
+        foreach ($servis as $key => $value) {
+            if ($value->id==$id) {
+                 if ($input["nombre_Servicio"]==$value->nombre_Servicio) {
+                    $request->validate([ 
+                        'nombre_Servicio'=>'required|min:3|string',
+                        'descripcion'=>'nullable|string|max:300|min:5',
+                        'precio'=>'required|min:0|max:100000',
+                        'estado'=>'in:1,0']);
+                        try{
+                            $servicio=Servicio::find($input["id"]);
+                
+                            if ($servicio==null) {
+                                session()->flash('errorE','Servicio no encontrado');
+                                return redirect("/Servicios");
+                            }
+                
+                            $servicio->update([
+                                "nombre_Servicio"=>$input["nombre_Servicio"],
+                                "descripcion"=>$input["descripcion"],
+                                "precio"=>$input["precio"],
+                                
+                            ]);
+                            session()->flash('echoEd','El servicio fue Editado');
+                            
+                            return redirect("Servicios");
+                        }catch(\Exception$e){
+                            Flash::error($e->getMessage());
+                            return redirect("/Servicios/Crear");
+                        }   
+                 }
+               
+            }
+        }
+        
         $request->validate([ 
         'nombre_Servicio'=>'required|unique:servicios,nombre_Servicio|min:3|string',
         'descripcion'=>'nullable|string|max:300|min:5',
@@ -130,7 +164,7 @@ class ServiciosController extends Controller
                
                     if ($item->servicio_id == $id) {
                     
-                        if ($item->estado==0 ) {
+                        if ($item->estado==0) {
                             // if($item->estado==1 && $value->estado==0){
                                 if ($servicio==null) {
                                     Flash::error("");
@@ -149,13 +183,38 @@ class ServiciosController extends Controller
                                 }      
                             // }
                         }else{
+                            
                             session()->flash('errorE','No se le puede cambiar el estado');
                             
                             return redirect("/Servicios");
                         }
                            
                     }
-                
+                // if ($item->servicio_id != $id) {
+                //     if ($item->estado==0 ) {
+                //         // if($item->estado==1 && $value->estado==0){
+                //             if ($servicio==null) {
+                //                 Flash::error("");
+                //                 session()->flash('errorE','Servicio no encontrado');
+                //                 return redirect("/Servicios");
+                //             }
+                            
+                //             try {
+                //                 $servicio->update(["estado"=>$estado]);
+                //                 session()->flash('echoE','El estado a sido cambiado');
+                //                 return redirect("/Servicios");
+                //             } catch (\Exception $e) {
+                //                 Flash::error($e->getMessage());
+                                
+                //                 return redirect("/Servicios/Crear");  
+                //             }      
+                //         // }
+                //     }else{
+                //         session()->flash('errorE','No se le puede cambiar el estado');
+                        
+                //         return redirect("/Servicios");
+                //     } 
+                // }
                 
             }
         }

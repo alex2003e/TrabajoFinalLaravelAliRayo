@@ -4,7 +4,7 @@
 @endsection
 
 @section('content')
-<div class="card" style="margin-left:50px; height:500;width: 600px; margin-top:20px;margin-bottom:20px;">
+<div class="card" style="margin-left:50px; height:580;width: 600px; margin-top:20px;margin-bottom:20px;">
     <div class="card-heard">
             
             <h4><strong style="margin-bottom:-20px;">CREAR SERVICIO</strong></h4>

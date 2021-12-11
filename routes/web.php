@@ -31,7 +31,7 @@ Route::get('/Servicios/Crear','ServiciosController@crear');
 Route::post('/Servicios/Guardar','ServiciosController@save');
 Route::get('/Servicios/Editar/{id}','ServiciosController@editar');
 Route::get('/Servicios/Detalle/{id}','ServiciosController@detalle');
-Route::post('/Servicios/Actualizar','ServiciosController@update');
+Route::post('/Servicios/Actualizar/{id}','ServiciosController@update');
 Route::get('/Servicios/CambioEstado/{id}/{estado}','ServiciosController@updateEstado');
 Route::get('/Servicios/Listar','ServiciosController@listar');
 

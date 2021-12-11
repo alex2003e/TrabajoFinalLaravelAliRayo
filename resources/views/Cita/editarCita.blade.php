@@ -4,7 +4,7 @@
 @endsection
 
 @section('content')
-<div class="card" style="margin-left:50px; height:500;width: 600px; margin-top:20px;margin-bottom:20px;">
+<div class="card" style="margin-left:50px; height:600;width: 600px; margin-top:20px;margin-bottom:20px;">
     <div class="card-heard">
          <h4><strong style="margin-left:200px;margin-bottom:-20px;">EDITAR CITA </strong></h4>
     </div>

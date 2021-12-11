@@ -43,7 +43,7 @@
                                         <div class="form-group row mb-0" style="padding-bottom: 10px;">
                                             <div class="col-md-8 offset-md-4">
                                                 <button type="submit" class="btn btn-primary">
-                                                    {{ __('Confirme Password') }}
+                                                    {{ __('Password Confirmada ') }}
                                                 </button>
 
                                                 @if (Route::has('password.request'))

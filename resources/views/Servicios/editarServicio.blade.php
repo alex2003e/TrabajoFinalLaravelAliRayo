@@ -4,7 +4,7 @@
 @endsection
 
 @section('content')
-<div class="card" style="margin-left:250px; height:300px;width: 400px; margin-top:20px;margin-bottom:20px;">
+<div class="card" style="margin-left:250px; height:350px;width: 400px; margin-top:20px;margin-bottom:20px;">
     <div class="card-heard">
          <h4><strong style="margin-left:60px;margin-bottom:-20px;">EDITAR SERVICIO </strong></h4>
     </div>
@@ -12,7 +12,7 @@
         
         <div class="">
             @include('flash::message')
-            <form action="/Servicios/Actualizar" method="POST" Class="Formulario-Editar row g-3">
+            <form action="/Servicios/Actualizar/{{$servicios->id}}" method="POST" Class="Formulario-Editar row g-3">
                 @csrf
                 <input type="hidden" name="id" value="{{$servicios->id}}"/>
                 <div class="col-md-6">

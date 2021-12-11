@@ -5,7 +5,15 @@
 @endsection
 
 @section('content')
-@if (Session::get('echoE'))
+@if (Session::get('echoC'))
+<div class="alert alert-success d-flex align-items-center" role="alert" style="margin-top:10px; width:40%;">
+    <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
+    <div>
+        <strong>Logrado!: </strong>{{Session::get('echoC')}}
+    </div>
+  <button type="button" class="btn-close"style="margin-left:8%;" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+@elseif (Session::get('echoE'))
 <div class="alert alert-success d-flex align-items-center" role="alert" style="margin-top:10px; width:40%;">
     <svg class="bi flex-shrink-0 me-2" width="24" height="24" role="img" aria-label="Success:"><use xlink:href="#check-circle-fill"/></svg>
     <div>
