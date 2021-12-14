@@ -43,7 +43,12 @@ class CitaController extends Controller
     }
     public function crear(){
         $servicios=Servicio::all();
-        return view('Cita.CrearCita',compact('servicios'));
+      foreach ($servicios as $key => $value) {
+          if ($value->id==$value->id) {
+              $precio=$value->precio;
+          }
+      }
+        return view('Cita.CrearCita',compact('servicios','precio'));
     }
     public function guardar(Request $request){
         $input=$request->all();
@@ -51,7 +56,7 @@ class CitaController extends Controller
         $request->validate([
         'nombre_Cliente'=>'required|min:3|max:100|string',
         'servicio_id'=>'required|exists:servicios,id',
-        'fecha'=>'nullable|date',
+        'fecha'=>'nullable|unique:citas,fecha|date',
         'direccion'=>'nullable|string|max:300|min:5',
         'descripcion'=>'nullable|string|max:300|min:5',
         'precio'=>'required|min:0|max:100000',

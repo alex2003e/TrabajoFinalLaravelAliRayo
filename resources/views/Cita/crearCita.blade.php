@@ -28,12 +28,14 @@
                 <div class="col-md-6">
                     
                         <label >Servicio</label>
-                        <select name="servicio_id"  class=" form-control @error('servicio') is-invalid @enderror">
-                                <option >seleccione uno </option>
-                            @foreach ($servicios as $key => $value)
-                                <option value="{{$value->id}}">{{$value->nombre_Servicio}}</option>
+                        <select name="servicio_id"  id="servicio" class=" form-control @error('servicio') is-invalid @enderror" onchange="precio_total()">
+                                <option value="" >seleccione uno </option>
+                            @foreach ($servicios as $value)
+                                <option precio="{{$value->precio}}" value="{{ $value->id }}">{{ $value->nombre_Servicio }}</option>
+                
                             @endforeach
                         </select>
+
                         @error('servicio')
                         <div class="invalid-feedback">{{$message}}</div>                         
                         @enderror
@@ -43,7 +45,10 @@
                 <div class="col-md-6">
                     
                         <label >Precio</label>
-                        <input type="text"   class="form-control @error('precio') is-invalid @enderror" name="precio">
+                        
+                        <input type="text"  id="precio" class="form-control @error('precio') is-invalid @enderror" name="precio"
+                         value="0" readonly>
+                            
                         @error('precio')
                         <div class="invalid-feedback">{{$message}}</div>                         
                         @enderror
@@ -92,7 +97,13 @@
 @endsection
 @section('js-alert')
 <script>
+function precio_total(){
 
+let precio = $("#servicio option:selected").attr("precio");     
+console.log(precio);
+ $("#precio").val(precio);
+
+}
 $('.formulario-Crear').submit(function(e){
 
     e.preventDefault();
@@ -133,6 +144,9 @@ $('.formulario-Crear').submit(function(e){
     })
 
 });
+
+
+
 
 </script>
     
