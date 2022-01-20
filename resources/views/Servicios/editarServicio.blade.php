@@ -46,7 +46,7 @@
                     
                 </div> 
                 <DIV class="col-12" >
-                    <a class="btn  btn-danger btn-ms" href="/Cita" ><i class="glyphicon glyphicon-edit "></i>Cancelar</a>
+                    <a class="btn  btn-danger btn-ms" href="/Servicios" ><i class="glyphicon glyphicon-edit "></i>Cancelar</a>
                     <button type="submit" class="btn btn-success float-right ">Actualizar</button>
                 </DIV>
             </form>    

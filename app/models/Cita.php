@@ -10,8 +10,10 @@ class Cita extends Model
   
     public $fillable=[
         "nombre_Cliente",
-        "servicio_id",
         "fecha",
+        "horaI",
+        "horaF",
+        "minutos",
         "direccion",
         "descripcion",
         "precio",

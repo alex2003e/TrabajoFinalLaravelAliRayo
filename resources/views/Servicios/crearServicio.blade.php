@@ -29,13 +29,13 @@
                 
                 <div class="col-md-6">
                     
-                    <label >Precio</label>
-                    <input type="text"   class="form-control @error('precio') is-invalid @enderror" name="precio">
-                    @error('precio')
-                    <div class="invalid-feedback">{{$message}}</div>                         
-                    @enderror
+                        <label >Precio</label>
+                        <input type="text"   class="form-control @error('precio') is-invalid @enderror" name="precio">
+                        @error('precio')
+                        <div class="invalid-feedback">{{$message}}</div>                         
+                        @enderror
                 
-            </div>
+                </div>
                 <div class="col-md-13">
                     
                         <label >Descripcion</label>
@@ -46,14 +46,10 @@
                     
                 </div>
 
-
-            
-
-                
                 
                 <div class="col-12" >
                     <button type="submit" class="btn btn-success float-right ">Crear</button>
-                    <a class="btn  btn-danger btn-ms " href="/Cita" ><i class=""glyphicon glyphicon-edit></i>Cancelar</a>
+                    <a class="btn  btn-danger btn-ms " href="/Servicios" ><i class=""glyphicon glyphicon-edit></i>Cancelar</a>
                 </div> 
             </form>
                 

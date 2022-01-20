@@ -7,16 +7,22 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
+        
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>@yield('title')</title>
+       
         <!-- CSS only -->
         <script src = "http://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js" defer ></script>
-
-       
-       
         <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />
         <link href="/css/styles.css" rel="stylesheet" />
+       
+        {{-- FullCalendar --}}
+        <link rel="stylesheet" href="/plugins/fullcalendar-5.10.1/lib/main.css">
+        <script src="/plugins/fullcalendar-5.10.1/lib/main.min.js"></script>
+        <script src="/plugins/fullcalendar-5.10.1/lib/locales-all.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
         {{-- DataTable --}}
         <link href="/css/bootstrap.min.css" rel="stylesheet" />
         <link href="/css/datatables.min.css" rel="stylesheet" />
@@ -88,6 +94,10 @@
                                         Servicios
                                     
                                     </a>
+                                    <a class="nav-link collapsed" href="/Productos">
+                                        Productos
+                                        
+                                    </a>
                                     <div class="sb-sidenav-collapse-arrow"></div>
                                 </nav>
                             </div>
@@ -126,7 +136,9 @@
         {{-- Sweetalert2 --}}
         <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         @yield('js-alert')
-
-        
+        {{-- FullCalendar --}}
+        <script src="/js/calendar.js "></script>
+        <script src="/plugins/fullcalendar-5.10.1/moment/moment.min.js "></script>
+        @yield('js-calendar')
     </body>
 </html>
